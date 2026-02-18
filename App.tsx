@@ -1,11 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
-import { Gamepad2, Globe, LayoutDashboard, Info, Github, ShieldAlert, MonitorCheck } from 'lucide-react';
-import Navbar from './components/Navbar';
-import Dashboard from './components/Dashboard';
-import GamesList from './components/GamesList';
-import Gateway from './components/Gateway';
-import About from './components/About';
+import { MonitorCheck, ShieldAlert } from 'lucide-react';
+import Navbar from './components/Navbar.tsx';
+import Dashboard from './components/Dashboard.tsx';
+import GamesList from './components/GamesList.tsx';
+import Gateway from './components/Gateway.tsx';
+import About from './components/About.tsx';
 
 export enum Page {
   DASHBOARD = 'dashboard',

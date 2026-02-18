@@ -1,13 +1,13 @@
 
 import React, { useState } from 'react';
-import { Search, Play, X, RotateCcw, Maximize2, Trophy, Flame, Brain, Target } from 'lucide-react';
-import SnakeGame from '../games/SnakeGame';
-import Puzzle2048 from '../games/Puzzle2048';
-import MemoryMatch from '../games/MemoryMatch';
-import ClickerHero from '../games/ClickerHero';
-import TicTacToe from '../games/TicTacToe';
-import VoidSweeper from '../games/VoidSweeper';
-import ReflexTest from '../games/ReflexTest';
+import { Search, Play, X, RotateCcw, Maximize2, Trophy } from 'lucide-react';
+import SnakeGame from '../games/SnakeGame.tsx';
+import Puzzle2048 from '../games/Puzzle2048.tsx';
+import MemoryMatch from '../games/MemoryMatch.tsx';
+import ClickerHero from '../games/ClickerHero.tsx';
+import TicTacToe from '../games/TicTacToe.tsx';
+import VoidSweeper from '../games/VoidSweeper.tsx';
+import ReflexTest from '../games/ReflexTest.tsx';
 
 interface Game {
   id: string;
