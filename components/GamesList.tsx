@@ -6,6 +6,8 @@ import Puzzle2048 from '../games/Puzzle2048';
 import MemoryMatch from '../games/MemoryMatch';
 import ClickerHero from '../games/ClickerHero';
 import TicTacToe from '../games/TicTacToe';
+import VoidSweeper from '../games/VoidSweeper';
+import ReflexTest from '../games/ReflexTest';
 
 interface Game {
   id: string;
@@ -22,11 +24,13 @@ const GAMES: Game[] = [
   { id: 'memory', name: 'Neural Match', category: 'Brain', image: 'https://images.unsplash.com/photo-1606326666490-4175911ef62f?w=400&h=300&fit=crop', component: MemoryMatch, rating: 4.5 },
   { id: 'clicker', name: 'Core Clicker', category: 'Idle', image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&h=300&fit=crop', component: ClickerHero, rating: 4.2 },
   { id: 'tictactoe', name: 'Quantum TicTacToe', category: 'Classic', image: 'https://images.unsplash.com/photo-1611996575749-79a3a250f948?w=400&h=300&fit=crop', component: TicTacToe, rating: 4.4 },
-  { id: 'mines', name: 'Void Sweeper', category: 'Logic', image: 'https://images.unsplash.com/photo-1580234811497-9df7fd2f357e?w=400&h=300&fit=crop', component: () => <div className="p-12 text-center text-slate-500 font-mono">MODULE_PENDING_UPDATE</div>, rating: 4.6 },
-  { id: 'tetris', name: 'Tetra Fall', category: 'Puzzle', image: 'https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=400&h=300&fit=crop', component: () => <div className="p-12 text-center text-slate-500 font-mono">MODULE_PENDING_UPDATE</div>, rating: 4.7 },
-  { id: 'reaction', name: 'Reflex Test', category: 'Arcade', image: 'https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=400&h=300&fit=crop', component: () => <div className="p-12 text-center text-slate-500 font-mono">MODULE_PENDING_UPDATE</div>, rating: 4.3 },
-  { id: 'typing', name: 'Ghost Typer', category: 'Classic', image: 'https://images.unsplash.com/photo-1587829741301-dc798b83bac1?w=400&h=300&fit=crop', component: () => <div className="p-12 text-center text-slate-500 font-mono">MODULE_PENDING_UPDATE</div>, rating: 4.1 },
-  { id: 'sudoku', name: 'Logic Grid', category: 'Logic', image: 'https://images.unsplash.com/photo-1509228468518-180dd4821805?w=400&h=300&fit=crop', component: () => <div className="p-12 text-center text-slate-500 font-mono">MODULE_PENDING_UPDATE</div>, rating: 4.5 },
+  { id: 'mines', name: 'Void Sweeper', category: 'Logic', image: 'https://images.unsplash.com/photo-1580234811497-9df7fd2f357e?w=400&h=300&fit=crop', component: VoidSweeper, rating: 4.6 },
+  { id: 'reaction', name: 'Reflex Test', category: 'Arcade', image: 'https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=400&h=300&fit=crop', component: ReflexTest, rating: 4.3 },
+  { id: 'tetris', name: 'Tetra Fall', category: 'Puzzle', image: 'https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=400&h=300&fit=crop', component: () => <div className="p-12 text-center text-slate-500 font-mono uppercase tracking-widest">Compiling_Assets...</div>, rating: 4.7 },
+  { id: 'typing', name: 'Ghost Typer', category: 'Classic', image: 'https://images.unsplash.com/photo-1587829741301-dc798b83bac1?w=400&h=300&fit=crop', component: () => <div className="p-12 text-center text-slate-500 font-mono uppercase tracking-widest">Awaiting_Dictionary...</div>, rating: 4.1 },
+  { id: 'sudoku', name: 'Logic Grid', category: 'Logic', image: 'https://images.unsplash.com/photo-1509228468518-180dd4821805?w=400&h=300&fit=crop', component: () => <div className="p-12 text-center text-slate-500 font-mono uppercase tracking-widest">Calculating_Grids...</div>, rating: 4.5 },
+  { id: 'binary', name: 'Binary Guess', category: 'Brain', image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=300&fit=crop', component: () => <div className="p-12 text-center text-slate-500 font-mono uppercase tracking-widest">Loading_Core...</div>, rating: 3.9 },
+  { id: 'tower', name: 'Stack Relay', category: 'Arcade', image: 'https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=400&h=300&fit=crop', component: () => <div className="p-12 text-center text-slate-500 font-mono uppercase tracking-widest">Building_Blocks...</div>, rating: 4.4 },
 ];
 
 const GamesList: React.FC = () => {
@@ -47,7 +51,7 @@ const GamesList: React.FC = () => {
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
         <div className="space-y-1">
           <h2 className="text-3xl font-orbitron font-bold text-slate-200">System Modules</h2>
-          <p className="text-slate-500">High-performance local execution. No remote tracking.</p>
+          <p className="text-slate-500">Local resource execution. No external telemetry.</p>
         </div>
 
         <div className="flex flex-col sm:flex-row w-full lg:w-auto gap-3">
