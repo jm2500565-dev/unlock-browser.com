@@ -1,0 +1,8 @@
+{
+  "name": "System Resource Node",
+  "description": "A distributed technical resource node for educational data retrieval and performance testing.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
