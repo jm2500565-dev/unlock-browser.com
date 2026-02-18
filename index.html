@@ -5,16 +5,42 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Local Resource Node</title>
+  <!-- Tailwind CSS - Warning: cdn.tailwindcss.com is for development/preview use -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  
   <script>
-    // Shim process.env for browser environments to prevent crashes
+    // Shim process.env for browser environments to prevent crashes in libraries like @google/genai
     window.process = {
       env: {
-        API_KEY: "" // Will be injected by the environment or ignored if not used
+        API_KEY: "" 
       }
     };
+    
+    // Global error listener to catch module loading failures
+    window.addEventListener('error', function(e) {
+      console.error('System Load Error:', e);
+      // If the root is empty after an error, show a diagnostic message
+      const root = document.getElementById('root');
+      if (root && root.getAttribute('data-status') !== 'loaded') {
+        root.innerHTML = `
+          <div style="height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #0f172a; color: #f8fafc; font-family: sans-serif; text-align: center; padding: 20px;">
+            <div style="color: #ef4444; margin-bottom: 20px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+            </div>
+            <h2 style="font-family: Orbitron, sans-serif; font-size: 1.5rem; margin-bottom: 10px;">MODULE_LOAD_FAILURE</h2>
+            <p style="color: #94a3b8; max-width: 400px; font-size: 14px; line-height: 1.6;">
+              The application failed to initialize. If you are viewing this on GitHub Pages, browsers cannot natively run .tsx files. Use a preview environment or a build step (like Vite) to host this app.
+            </p>
+            <div style="margin-top: 20px; font-family: monospace; font-size: 11px; color: #475569; background: #1e293b; padding: 10px; border-radius: 6px;">
+              ${e.message || 'Check browser console for full traceback'}
+            </div>
+          </div>
+        `;
+      }
+    }, true);
   </script>
+
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -23,37 +49,21 @@
       margin: 0;
       overflow-x: hidden;
     }
-    .font-orbitron {
-      font-family: 'Orbitron', sans-serif;
-    }
-    .font-mono {
-      font-family: 'JetBrains Mono', monospace;
-    }
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #1e293b;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #334155;
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #475569;
-    }
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-      20%, 40%, 60%, 80% { transform: translateX(5px); }
-    }
-    .shake {
-      animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
-    }
-    .panic-transition {
-      transition: all 0.1s ease-in-out;
+    .font-orbitron { font-family: 'Orbitron', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid #1e293b;
+      border-top-color: #6366f1;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
     }
   </style>
+
+  <!-- Cleaned up import map for React 19 -->
   <script type="importmap">
 {
   "imports": {
@@ -68,7 +78,15 @@
 </script>
 </head>
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <!-- Initial loading state visible while JS is fetching -->
+    <div style="height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #0f172a; color: #475569; font-family: 'Orbitron', sans-serif; gap: 20px;">
+      <div class="loading-spinner"></div>
+      <div style="letter-spacing: 0.2em; font-size: 12px; font-weight: bold;">INITIALIZING_RESOURCE_NODE...</div>
+    </div>
+  </div>
+  
+  <!-- Main Entry point -->
   <script type="module" src="index.tsx"></script>
 </body>
 </html>
